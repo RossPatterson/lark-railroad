@@ -67,12 +67,12 @@ class Lark2Railroad(Transformer):
         return None
 
     def rule_params(self, children):
-        if len(children) != 0:
+        if len(children) != 0 and any(children):
             raise ValueError("Rule templates are currently not supported")
         return Discard
 
     def token_params(self, children):
-        if len(children) != 0:
+        if len(children) != 0 and any(children):
             raise ValueError("Token templates are currently not supported")
         return Discard
 
