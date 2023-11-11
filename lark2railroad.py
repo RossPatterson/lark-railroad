@@ -136,7 +136,7 @@ class Lark2Railroad(Transformer):
     def _ignore_this_node(self, children):
         return Discard
 
-    import_path = import_ = ignore = _ignore_this_node
+    declare = import_path = import_ = ignore = name_list = priority = statenent = _ignore_this_node
 
     def start(self, children):
         return children
