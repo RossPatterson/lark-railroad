@@ -69,12 +69,12 @@ class Lark2Railroad(Transformer):
     def rule_params(self, children):
         if len(children) != 0:
             raise ValueError("Rule templates are currently not supported")
-        raise Discard
+        return Discard
 
     def token_params(self, children):
         if len(children) != 0:
             raise ValueError("Token templates are currently not supported")
-        raise Discard
+        return Discard
 
     def name(self, children):
         name, = children
@@ -132,7 +132,7 @@ class Lark2Railroad(Transformer):
         return name, Diagram(Start('simple', name.value), expansions, type='simple', css=self._css)
 
     def _ignore_this_node(self, children):
-        raise Discard
+        return Discard
 
     import_path = import_ = ignore = _ignore_this_node
 
@@ -198,7 +198,7 @@ class Lark2HTML(Lark2Railroad):
             alias = path[-1]
         info = self._get_import(path)
         if info is None:
-            raise Discard
+            return Discard
         file_name, href = info
         t, c = {'TOKEN': ('simple', Terminal), 'RULE': ('complex', NonTerminal)}[alias.type]
         return alias.value, Diagram(Start(t, alias.value),
