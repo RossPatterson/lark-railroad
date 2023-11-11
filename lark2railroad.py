@@ -105,6 +105,8 @@ class Lark2Railroad(Transformer):
     def expr(self, children):
         if len(children) == 3:
             base, mi, ma = children
+            if mi is None and ma is None:
+                return base
             if int(mi.value) == 0:
                 if int(ma.value) == 1:
                     return Optional(base)
