@@ -93,14 +93,14 @@ class Lark2Railroad(Transformer):
         return Sequence(*children)
 
     def expansions(self, children):
-        return Choice(0, *children)
+        return Choice(0, *children) if len(children) > 1 else children
 
     def maybe(self, children):
         return Optional(children[0])
 
     def alias(self, children):
         base, name = children
-        return Group(base, name.value)
+        return Group(base, name.value) if name is not None else base
 
     def expr(self, children):
         if len(children) == 3:
